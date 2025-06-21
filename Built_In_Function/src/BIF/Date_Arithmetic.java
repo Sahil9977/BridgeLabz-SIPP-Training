@@ -1,0 +1,15 @@
+package BIF;
+import java.time.LocalDate;
+import java.util.Scanner;
+public class Date_Arithmetic {
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String dateStr = sc.next();  
+        LocalDate date = LocalDate.parse(dateStr);
+
+        LocalDate result = date.plusDays(7).plusMonths(1).plusYears(2).minusWeeks(3);
+
+        System.out.println("Final Date after arithmetic: " + result);
+    }
+
+}
