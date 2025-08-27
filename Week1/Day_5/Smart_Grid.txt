@@ -1,0 +1,12 @@
+data = Map<Zone, Map<Day, List<Reading>>>
+
+report = data.entrySet().stream()
+    .map(zoneEntry ->
+        zoneEntry.key + ":" +
+        zoneEntry.value.entrySet().stream()
+            .map(dayEntry ->
+                dayEntry.key + " -> " +
+                dayEntry.value.stream().max()
+            )
+    )
+print report

@@ -1,0 +1,16 @@
+transactions = List<Transaction>
+
+report = transactions.stream()
+    .collect(
+        groupingBy(t -> t.merchant,
+            groupingBy(t -> t.date.month,
+                summarizingDouble(t -> t.amount)
+            )
+        )
+    )
+
+for merchant in report:
+    print merchant
+    for month in report[merchant]:
+        summary = report[merchant][month]
+        print month, "count:", summary.count, "total:", summary.sum

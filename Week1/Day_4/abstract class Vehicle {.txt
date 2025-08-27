@@ -1,0 +1,28 @@
+abstract class Vehicle {
+    id, brand, model
+    abstract rentPrice()
+}
+
+interface Rentable {
+    rent(days)
+}
+
+class Car extends Vehicle implements Rentable {
+    rentPrice(): return 1000
+    rent(days): return days * rentPrice()
+}
+
+class Bike extends Vehicle implements Rentable {
+    rentPrice(): return 500
+    rent(days): return days * rentPrice()
+}
+
+class VehicleFactory {
+    static createVehicle(type):
+        if type == "car": return new Car()
+        if type == "bike": return new Bike()
+}
+
+vehicle = VehicleFactory.createVehicle("car")
+cost = vehicle.rent(5)
+print cost

@@ -1,0 +1,17 @@
+graph = Map<Zone, List<Zone>>
+riskData = Map<Zone, riskValue>
+visited = Set
+
+DFS(zone):
+    visited.add(zone)
+    risk = riskData[zone]
+    for neighbor in graph[zone]:
+        if neighbor not in visited:
+            risk += DFS(neighbor)
+    return risk
+
+for zone in graph:
+    if zone not in visited:
+        totalRisk = DFS(zone)
+        if totalRisk > threshold:
+            print "High-risk area:", zone

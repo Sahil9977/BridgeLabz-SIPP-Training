@@ -1,0 +1,33 @@
+interface DiagnosisStrategy {
+    diagnose(symptoms)
+}
+
+class RuleBasedDiagnosis implements DiagnosisStrategy {
+    diagnose(symptoms):
+        if "fever" in symptoms and "cough" in symptoms:
+            return ["Flu", "COVID-19"]
+}
+
+class AIBasedDiagnosis implements DiagnosisStrategy {
+    diagnose(symptoms):
+        return ["Migraine", "Vertigo"]
+}
+
+class ProbabilityBasedDiagnosis implements DiagnosisStrategy {
+    diagnose(symptoms):
+        return ["DiseaseX (70%)", "DiseaseY (30%)"]
+}
+
+class DiagnosisContext {
+    strategy
+    setStrategy(strategy): this.strategy = strategy
+    executeDiagnosis(symptoms): return strategy.diagnose(symptoms)
+}
+
+context = new DiagnosisContext()
+context.setStrategy(new RuleBasedDiagnosis())
+print context.executeDiagnosis(["fever","cough","fatigue"])
+context.setStrategy(new AIBasedDiagnosis())
+print context.executeDiagnosis(["headache","dizziness","nausea"])
+context.setStrategy(new GeneticPatternDiagnosis())
+print context.executeDiagnosis(["geneA","geneB"])

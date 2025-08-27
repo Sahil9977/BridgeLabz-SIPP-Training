@@ -1,0 +1,38 @@
+class TrieNode {
+    children = Map<char, TrieNode>
+    isEnd = false
+    popularity = 0
+}
+
+class Trie {
+    root = new TrieNode()
+    insert(word, score):
+        node = root
+        for c in word:
+            if c not in node.children:
+                node.children[c] = new TrieNode()
+            node = node.children[c]
+        node.isEnd = true
+        node.popularity = score
+
+    search(prefix):
+        node = root
+        for c in prefix:
+            if c not in node.children: return []
+            node = node.children[c]
+        results = []
+        dfs(node, prefix, results)
+        return topN(results)
+
+    dfs(node, word, results):
+        if node.isEnd: results.add((word,node.popularity))
+        for child in node.children:
+            dfs(node.children[child], word+child, results)
+}
+
+trie = new Trie()
+trie.insert("pizza hut", 10)
+trie.insert("pizza point", 8)
+trie.insert("pita bread", 15)
+trie.insert("pizzeria", 5)
+print trie.search("pi")

@@ -1,0 +1,19 @@
+class Flight {
+    price, duration
+}
+
+compare(f1, f2):
+    if f1.price != f2.price:
+        return f1.price - f2.price
+    else:
+        return f1.duration - f2.duration
+
+mergeSort(flights, comp):
+    if flights.size <= 1: return flights
+    mid = flights.size / 2
+    left = mergeSort(flights[0..mid], comp)
+    right = mergeSort(flights[mid+1..end], comp)
+    return merge(left, right, comp)
+
+flights = [f1, f2, f3...]
+sortedFlights = mergeSort(flights, compare)

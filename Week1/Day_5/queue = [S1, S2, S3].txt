@@ -1,0 +1,15 @@
+queue = [S1, S2, S3]
+
+assignRequest(request):
+    server = queue.dequeue()
+    print request, "->", server
+    queue.enqueue(server)
+
+assignRequest("R1")
+assignRequest("R2")
+assignRequest("R3")
+queue.enqueue("S4")
+assignRequest("R4")
+assignRequest("R5")
+queue.remove("S2")
+assignRequest("R6")

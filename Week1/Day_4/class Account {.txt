@@ -1,0 +1,31 @@
+class Account {
+    id, balance
+    deposit(amount):
+        balance += amount
+    withdraw(amount):
+        if balance >= amount:
+            balance -= amount
+        else:
+            print "Insufficient Balance"
+}
+
+class SavingAccount extends Account {
+    withdraw(amount):
+        if amount > 10000:
+            print "Cannot withdraw more than 10k at once"
+        else if balance >= amount:
+            balance -= amount
+        else:
+            print "Insufficient Balance"
+}
+
+class CurrentAccount extends Account {
+    withdraw(amount):
+        if balance + 5000 >= amount:
+            balance -= amount
+        else:
+            print "Limit Exceeded"
+}
+
+savingAcc = new SavingAccount(20000)
+savingAcc.withdraw(15000)

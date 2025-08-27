@@ -1,0 +1,15 @@
+courses = Map<Course, List<Student>>
+
+register(course, student):
+    if course not in courses:
+        courses[course] = new List
+    courses[course].add(student)
+
+register("Java", "Dhruv")
+register("Java", "Ravi")
+register("Python", "Neha")
+
+for course in courses:
+    print "Course:", course
+    for student in courses[course]:
+        print "-", student

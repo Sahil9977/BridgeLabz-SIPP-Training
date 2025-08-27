@@ -1,0 +1,16 @@
+employees = List<Employee>
+
+report = employees.stream()
+    .collect(
+        groupingBy(e -> e.department,
+            collectingAndThen(toList(), list -> {
+                pool = 0.1 * sum(list.salary)
+                totalRating = sum(list.rating)
+                return list.stream().map(e ->
+                    (e.name, pool * (e.rating / totalRating))
+                )
+            })
+        )
+    )
+
+print report
